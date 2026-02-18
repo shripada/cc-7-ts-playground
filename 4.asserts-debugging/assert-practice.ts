@@ -100,18 +100,18 @@ const filterOdd = (numbers: number[]): number[] => {
   return oddNums;
 };
 
-let numbers: number[] = []; //?  pass by value or pass by reference?
+let oddTestNumbers: number[] = []; //?  pass by value or pass by reference?
 // assert(
 //   filterOdd(numbers) === [],
 //   'Filtering empty array must return an empty array',
 // );
 assertEqual(
-  filterOdd(numbers),
+  filterOdd(oddTestNumbers),
   [],
   'Filtering empty array must return an empty array',
 );
 
-let numbers1 = [1, 2, 3, 4, 5];
+oddTestNumbers = [1, 2, 3, 4, 5];
 
 // assert(
 //   filterOdd(numbers) === [1, 3, 5],
@@ -119,7 +119,7 @@ let numbers1 = [1, 2, 3, 4, 5];
 // );
 
 assertEqual(
-  filterOdd(numbers1),
+  filterOdd(oddTestNumbers),
   [1, 3, 5],
   'Filtering [1, 2, 3, 4, 5] must return [1, 3, 5]',
 );
