@@ -1,14 +1,14 @@
-// import assert from 'assert';
+import assert from 'assert';
 /**
  * assert will throw an exception if the invariant (boolean expression) fails. Otherwise, it does not do anything.
  * @param invariant boolean expression
  * @param message string that explains what is being checked for
  */
-function assert(invariant: boolean, message: string): void {
-  if (invariant === false) {
-    throw new Error(`assertion: ${message} failed`);
-  }
-}
+// function assert(invariant: boolean, message: string): void {
+//   if (invariant === false) {
+//     throw new Error(`assertion: ${message} failed`);
+//   }
+// }
 
 function assertEqual(actual: number[], expected: number[], message: string) {
   if (actual.length !== expected.length) {
@@ -90,6 +90,8 @@ assert(isPalindrome(str) === true, 'madam is  a palindrome');
  *
  */
 const filterOdd = (numbers: number[]): number[] => {
+  assert(Array.isArray(numbers), 'Array was expected, but got object!'); // Pre conditions.
+
   //return [];
   const oddNums = [];
   for (let num of numbers) {
@@ -118,8 +120,10 @@ oddTestNumbers = [1, 2, 3, 4, 5];
 //   'Filtering empty array must return an empty array',
 // );
 
-assertEqual(
+assert.deepStrictEqual(
   filterOdd(oddTestNumbers),
   [1, 3, 5],
   'Filtering [1, 2, 3, 4, 5] must return [1, 3, 5]',
 );
+
+filterOdd({} as unknown as []);

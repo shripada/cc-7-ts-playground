@@ -1,0 +1,26 @@
+{
+  "name": "typescript-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shripada/cc-7-ts-playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/shripada/cc-7-ts-playground/issues"
+  },
+  "homepage": "https://github.com/shripada/cc-7-ts-playground#readme",
+  "devDependencies": {
+    "@types/node": "25.2.3",
+    "typescript": "5.9.3"
+  },
+  "type": "module"
+}
