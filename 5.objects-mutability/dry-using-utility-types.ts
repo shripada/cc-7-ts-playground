@@ -47,4 +47,4 @@ type RequiredAlbum = Required<Album>;
 type Person = Pick<Student, 'name' | 'id'>;
 
 // * Omit utility type is the opposite of Pick, creates new type by omitting few props
-type StudenSansGrade = Omit<Student, 'grade'>;
+type StudenSansGrade = Omit<Student, 'grade' | 'id'>;

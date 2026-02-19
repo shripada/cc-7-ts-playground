@@ -21,11 +21,12 @@ type AlbumSales = Album & SalesData;
 
 //* AlbumSales object has now properties of both objects. Note here, intention is not to inherit, but to combine. This gives a flexibility where SalesData can be combined with any other type to create new Sales types.
 const wishYouWereHereSales: AlbumSales = {
+  //conform
   title: 'Wish You Were Here',
   artist: 'Pink Floyd',
   releaseYear: 1975,
   unitsSold: 13000000,
-  revenue: 65000000,
+  revenue: 100000,
 };
 
 //* you can intersect as many types as you want
@@ -35,10 +36,10 @@ type AlbumSalesGenre = Album & SalesData & { genre: string };
 type StringAndNumber = string & number; //! never is a special type of typescript that indicates, this can never work. The reason is string and number have some properties which cant be combined together.
 
 //* Incompatible types can not be combined
-type One = { id: number };
-type Two = { id: string };
+type One = { id?: number; x: string };
+type Two = { id?: string; y: string };
 type Combined = One & Two;
-let combined: Combined = { id: 10 }; //! id can not be a number as well as string at same time! Type 'number' is not assignable to type 'never'.
+let combined: Combined = { id: 10, x: 'x', y: 'string' }; //! id can not be a number as well as string at same time! Type 'number' is not assignable to type 'never'.
 
 // * Intersections vs interface extends
 
@@ -55,7 +56,7 @@ interface TwoI extends OneI {
   //! Error: Types of property 'id' are incompatible.
   id: string;
 }
-//* TypeScript will only raise an error when you try to access the age property, not when you define it. So, `interface extends` is better for catching errors when building out your types. Also from overall performace perspective interface extends is much better.
+//* TypeScript will only raise an error when you try to access the id property, not when you define it. So, `interface extends` is better for catching errors when building out your types. Also from overall performace perspective interface extends is much better.
 
 //* Also from performance angle, the intersection types get recomputed everytime they are used, however typescript can cache interface extends.
 

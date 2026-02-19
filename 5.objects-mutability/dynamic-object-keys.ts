@@ -1,7 +1,7 @@
 // * We already have discussed that the objects are used as key value stores. And many a times, it is impossible to guess the exact keys upfront.
 
 // * JS will alllow us to create a object literal, and then randomly add new keys as we want
-const anObject = {}; // Observe how TS infers type here
+let anObject = {}; // Observe how TS infers type here
 anObject.one = 1; //!Property 'one' does not exist on type '{}'
 anObject.two = 2; //!Property 'two' does not exist on type '{}'
 
@@ -10,9 +10,9 @@ interface WordFrequency {
   //? but how do we type keys which are words in a sentence given? we do not know them in advance!
 }
 
-// To address this, TS has a thing called indexed signature. So we can now accomodate the dynamic keys in WordFrequency:
+// To address this, TS has a thing called index signature. So we can now accomodate the dynamic keys in WordFrequency:
 interface WordFrequency {
-  [index: string]: number;
+  [key: string]: number; // string, number, Symbol
 }
 // This signature says, you can have any number of string keys as you wish. Key sentence, however is a must.
 
@@ -109,6 +109,7 @@ acceptAllNonPrimitives(true);
 
 // ! Exercise - 1 Use an Index Signature for Dynamic Keys: Invent a type Scores, that can have any string as key.
 // Give solution using inline structural type, type alias, interface, and Record.
+
 const scores = {};
 
 scores.math = 95;
@@ -116,12 +117,19 @@ scores.english = 90;
 scores.science = 85;
 
 // ! Exercise  -2 Default Properties with Dynamic Keys: tweak the Scores type to include 3 known fields - maths, science, english. And then we should be able to add many more.
-const scores: Scores = {
+const scores1: Scores = {
   maths: 95,
   english: 90,
   science: 30,
 };
 
-scores.athletics = 100;
-scores.french = 75;
-scores.spanish = 70;
+scores1.athletics = 100;
+scores1.french = 75;
+scores1.spanish = 70;
+
+interface Scores {
+  maths: number;
+  english: number;
+  science: number;
+  [key: string]: number;
+}
