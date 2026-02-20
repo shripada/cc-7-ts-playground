@@ -1,17 +1,32 @@
 //* Sometimes, once an object is created, we might not want someone to modify certain properties of it. Such props can be marked as readonly
 
 interface Album {
-  readonly title: string;
-  readonly artist: string;
+  title: string;
+  artist: string;
   status?: 'new-release' | 'on-sale' | 'staff-pick';
   genre?: string[];
 }
+
+const aReadonlyAlbum: Album = {
+  title: 'Nex gen',
+  artist: 'John McCarthy',
+};
 
 const readOnlyWhiteAlbum: Readonly<Album> = {
   title: 'The Beatles (White Album)',
   artist: 'The Beatles',
   status: 'staff-pick',
 };
+
+readOnlyWhiteAlbum.status = 'status';
+
+// Javascript's Object.freeze will disallow mutation at runtime, however TS's readonly is only compile time
+const obj = {
+  prop: 42,
+};
+
+Object.freeze(obj);
+obj.prop = 10;
 
 readOnlyWhiteAlbum.title = 'New album!'; // ! Can not modify readonly props
 // ! Note that like many of TypeScript's type helpers, the immutability enforced by readonly only operates on the first level. It won't make properties read-only recursively.
@@ -25,6 +40,7 @@ readOnlyGenres[0] = 'classic';
 
 // * ReadonlyArray helper of TypeScript.
 const readOnlyGenres1: ReadonlyArray<string> = [
+  // readonly string[]
   'rock',
   'pop',
   'unclassifiable',
@@ -38,7 +54,9 @@ readonlyFoo(['one', 'two']);
 const mutableNames = ['one', 'two', 'three'];
 readonlyFoo(mutableNames); // Mutable array can be assigned to a readonly one
 
-function mutableFoo(strings: string[]): void {}
+function mutableFoo(strings: string[]): void {
+  strings[0] = '100';
+}
 mutableFoo(readonlyNames); // ! can not pass readonly where a mutable is expected
 
 //* Readonly utility type
@@ -55,15 +73,11 @@ type Country = {
 type ReadonlyCountry = Readonly<Country>; //only top level keys are made readonly
 
 //! Exercise: Ensure push, and assingment results in error.
-function printNames(names: string[]) {
+function printNames(names: readonly string[]) {
   for (const name of names) {
     console.log(name);
   }
-
-  // @ts-expect-error
   names.push('John');
-
-  // @ts-expect-error
   names[0] = 'Billy';
 }
 
@@ -121,10 +135,10 @@ const modifyButtons = (attributes: ButtonAttributes[]) => {};
 
 const buttonsToChange = [
   {
-    type: 'button',
+    type: 'button' as const,
   },
   {
-    type: 'submit',
+    type: 'submit' as const,
   },
 ];
 
