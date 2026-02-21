@@ -106,3 +106,7 @@ interface Stack<T> {
 //! exercise Realise Queue using LinkedList
 
 //! exercise. Give a type to a generic sort algorithm.
+
+// input: 5 * ( 6 + 2 ) - 12 / 4  Output:  37
+// Wrong input : a * 3  Output: undefined
+function evaluateExpression(expression: string): number | undefined {}
