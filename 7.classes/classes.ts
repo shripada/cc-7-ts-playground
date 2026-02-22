@@ -1,8 +1,6 @@
 // Before classes were introduced into JS,
 // The following methods were being used to create an object ( can still be used)
 
-import { release } from 'node:os';
-
 // * Object literal   (still is used)
 const person = {
   firstName: 'testFirstName',
