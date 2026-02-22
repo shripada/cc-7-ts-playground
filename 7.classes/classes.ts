@@ -112,8 +112,26 @@ class Album {
     this.releaseYear = releaseYear;
     this.#privateAtRuntime = 10;
   }
+
+  // * methods
+  // inside of the Album class
+  printAlbumInfo() {
+    // `this` gets bound only when the method is invoked on the object.
+    console.log(
+      `${this.title} by ${this.artist}, released in ${this.releaseYear}.`,
+    );
+  }
+
+  // * another option to define a method is to use arrow functions
+  // inside of the Album class
+  printAlbumInfoArrow = () => {
+    // this gets bound to the object the moment it is created.
+    console.log(
+      `${this.title} by ${this.artist}, released in ${this.releaseYear}.`,
+    );
+  };
 }
 const album = new Album('ZZ', 'Michael', 1988);
 album.title = 'Thriller'; // not allowed as title is readonly
 
-// * Implementing class methods
+// ! Exercise. Fix the issue in event-test app, where there is a bug in handling button click and updating count value.
