@@ -13,14 +13,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/shripada/cc-7-ts-playground/issues"
   },
   "homepage": "https://github.com/shripada/cc-7-ts-playground#readme",
   "devDependencies": {
     "@types/node": "25.2.3",
+    "pretty-quick": "4.2.2",
+    "simple-git-hooks": "2.13.1",
     "typescript": "5.9.3"
-  },
-  "type": "module"
+  }
 }
