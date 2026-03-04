@@ -62,7 +62,7 @@ function addEntry(
 	key: string,
 	value: string,
 ): Record<string, string> {
-	const copy = { ...object };
+	const copy = { ...object }; // shallow copy
 	if (!(key in copy)) {
 		copy[key] = value;
 	}
@@ -72,6 +72,7 @@ function addEntry(
 const obj1 = { a: "apple", b: "banana" };
 const result1 = addEntry(obj1, "c", "cherry");
 assert.deepStrictEqual(result1, { a: "apple", b: "banana", c: "cherry" });
+assert.deepStrictEqual(obj1, { a: "apple", b: "banana" });
 
 const result2 = addEntry(obj1, "a", "apricot");
 assert.deepStrictEqual(result2, { a: "apple", b: "banana" });
