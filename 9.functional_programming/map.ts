@@ -100,22 +100,22 @@ console.log(linesWithout4);
 // Add 10 to quantity:
 // will require map. The transformation should split each string into the item and quantity parts.
 // then convert  quantity part into a number, add 10 to it. Now the transformed string will the item part appended with the modified quantity.
-const transformedLines = linesWithout4.map((line, index) => {
-	// 'items qty' needs to be intact, no transformation for it. It is at index 0
-	if (index === 0) {
-		return line;
-	}
+const transformedLines = lines
+	.filter((line) => !line.includes("4"))
+	.map((line, index) => {
+		// 'items qty' needs to be intact, no transformation for it. It is at index 0
+		if (index === 0) {
+			return line;
+		}
+		// Each line needs to be split into item and number
+		const [item, quantity] = line.split(" ");
 
-	// Each line needs to be split into item and number
-	const [item, quantity] = line.split(" ");
-
-	// Convert quantity to a number and then add 10.
-	let numQuantity = Number(quantity);
-	if (!isNaN(numQuantity)) {
-		numQuantity += 10;
-	}
-
-	return `${item} ${numQuantity}`;
-});
+		// Convert quantity to a number and then add 10.
+		let numQuantity = Number(quantity);
+		if (!isNaN(numQuantity)) {
+			numQuantity += 10;
+		}
+		return `${item} ${numQuantity}`;
+	});
 
 console.log(transformedLines);
